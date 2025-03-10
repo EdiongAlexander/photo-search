@@ -64,7 +64,7 @@ export default function Gallery({ photos, query }: GalleryProps) {
               />
             </div>
 
-            <div className="p-4 flex items-center gap-3">
+            <div className="p-4 flex items-center justify-between gap-3">
               <img
                 src={photo.user.profile_image.small}
                 alt={photo.user.username}

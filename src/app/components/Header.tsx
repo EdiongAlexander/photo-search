@@ -1,26 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type HeaderProps = {
   onSearch: (query: string) => void;
 };
 
 export default function Header({ onSearch }: HeaderProps) {
+  const [date, setDate] = useState("");
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    setDate(
+      `${new Date().toLocaleDateString("en-US", {
+        weekday: "long",
+      })}, ${new Date().toLocaleDateString("en-US", {
+        month: "short",
+        year: "numeric",
+      })}`
+    );
+  }, []);
 
   return (
     <header className="bg-[#F4F4F5] w-full py-20 sm:px-30 px-8">
       <div className="flex sm:flex-row flex-col items-center sm:justify-between">
         <h5 className="text-2xl font-bold font-pacifico">PhotoSearch.</h5>
-        <p>
-          {`${new Date().toLocaleDateString("en-US", {
-            weekday: "long",
-          })}, ${new Date().toLocaleDateString("en-US", {
-            month: "short",
-            year: "numeric",
-          })}`}
-        </p>
+        <p>{date}</p>
       </div>
       <form
         onSubmit={(e) => {

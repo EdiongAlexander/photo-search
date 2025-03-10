@@ -1,9 +1,8 @@
 "use client";
 
 import { tailspin } from "ldrs";
-import React from "react";
+import React, { useEffect } from "react";
 
-tailspin.register();
 type GalleryProps = {
   photos: {
     id: string;
@@ -16,10 +15,16 @@ type GalleryProps = {
 };
 
 export default function Gallery({ photos, query }: GalleryProps) {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      tailspin.register();
+    }
+  }, []);
+  
   if (!photos || photos.length === 0) {
     return (
       <div className="flex items-center justify-center py-4">
-        {React.createElement("l-tailspin", {
+       {React.createElement("l-tailspin", {
           size: "40",
           stroke: "5",
           speed: "0.9",

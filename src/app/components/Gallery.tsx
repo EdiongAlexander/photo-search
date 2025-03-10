@@ -1,3 +1,5 @@
+"use client";
+
 import { tailspin } from "ldrs";
 import React from "react";
 
